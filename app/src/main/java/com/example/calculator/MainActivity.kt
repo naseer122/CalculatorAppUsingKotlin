@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onClear(view: View) {
         TvInput?.text = ""
+        isDot = false
+        LasDigit = false
 
     }
 
