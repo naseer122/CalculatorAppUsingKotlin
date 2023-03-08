@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
     fun onDecimalPoint(view: View) {
        if (LasDigit && !isDot){
            TvInput?.append((view as Button).text)
@@ -46,8 +48,37 @@ class MainActivity : AppCompatActivity() {
         else{
             Toast.makeText(this,"Already have do in the statementn",Toast.LENGTH_SHORT).show()
        }
+        if (!LasDigit && !isDot){
+            TvInput?.append("0.")
+        }
     }
 
     //TODO: Task 1 in this module add starting dot as  "0."
 
+    //Operator Adding function
+    fun isOperatorAdded(value:String):Boolean{
+        return if (value.startsWith("-") ){
+            false
+        } else{
+            value.contains("-")
+                    || value.contains("+")
+                    || value.contains("/")
+                    || value.contains("*")
+            true
+        }
     }
+
+    fun OnOperator(view: View) {
+       // TvInput?.append((view as Button).text)
+        TvInput?.text.let {
+         //   Toast.makeText(this,"added some click",Toast.LENGTH_SHORT).show()
+            if (LasDigit && isOperatorAdded(it.toString())){
+                TvInput?.append((view as Button).text)
+                LasDigit = false
+                isDot = false
+
+            }
+        }
+    }
+
+}
